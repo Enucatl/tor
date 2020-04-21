@@ -54,7 +54,7 @@ class tor::install {
   }
 
   if $tor::arm {
-    package { 'tor-arm':
+    package { $tor::arm_package:
       ensure => $tor::arm_version,
     }
   }

@@ -3,6 +3,9 @@
 # @param arm
 #   Install tor-arm.
 #
+# @param arm_package
+#   Name of the specific package to install for tor-arm.
+#
 # @param arm_version
 #   The specific version of tor-arm that should be installed.
 #

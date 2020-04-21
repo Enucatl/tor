@@ -1,5 +1,6 @@
 ---
 tor::arm: false
+tor::arm_package: nyx
 tor::arm_version: installed
 tor::automap_hosts_on_resolve: false
 tor::data_dir: /var/lib/tor
