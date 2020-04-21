@@ -1,0 +1,6 @@
+---
+tor::daemon::base::user: toranon
+tor::daemon::base::group: toranon
+tor::daemon::base::manage_user: false
+tor::daemon::base::data_dir_mode: 0750
+...

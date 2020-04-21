@@ -74,27 +74,26 @@ define tor::daemon::onion_service(
       $os_hostname = tor::onion_address($private_key)
       $real_private_key = $private_key
     }
-    include ::tor::daemon::params
     file{
       $data_dir_path:
         ensure  => directory,
         purge   => true,
         force   => true,
         recurse => true,
-        owner   => $tor::daemon::params::user,
-        group   => $tor::daemon::params::group,
+        owner   => $tor::daemon::base::user,
+        group   => $tor::daemon::base::group,
         mode    => '0600',
         require => Package['tor'];
       "${data_dir_path}/private_key":
         content => $real_private_key,
-        owner   => $tor::daemon::params::user,
-        group   => $tor::daemon::params::group,
+        owner   => $tor::daemon::base::user,
+        group   => $tor::daemon::base::group,
         mode    => '0600',
         notify  => Service['tor'];
       "${data_dir_path}/hostname":
         content => "${os_hostname}.onion\n",
-        owner   => $tor::daemon::params::user,
-        group   => $tor::daemon::params::group,
+        owner   => $tor::daemon::base::user,
+        group   => $tor::daemon::base::group,
         mode    => '0600',
         notify  => Service['tor'];
     }

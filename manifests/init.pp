@@ -42,19 +42,20 @@
 #   related packages.
 #
 class tor (
-  Boolean $arm                      = false,
-  String  $arm_version              = 'installed',
-  Boolean $automap_hosts_on_resolve = false,
-  Stdlib::Unixpath $data_dir        = '/var/lib/tor',
-  String  $config_file              = '/etc/tor/torrc',
-  Array   $log_rules                = [ 'notice file /var/log/tor/notices.log' ],
-  Boolean $safe_logging             = true,
-  Boolean $torsocks                 = false,
-  String  $torsocks_version         = 'installed',
-  String  $version                  = 'installed',
-  Boolean $use_bridges              = false,
-  Boolean $use_upstream_repository  = false,
-  String  $upstream_release         = 'stable',
+  Boolean $arm,
+  String  $arm_package,
+  String  $arm_version,
+  Boolean $automap_hosts_on_resolve,
+  Stdlib::Unixpath $data_dir,
+  String  $config_file,
+  Array   $log_rules,
+  Boolean $safe_logging,
+  Boolean $torsocks,
+  String  $torsocks_version,
+  String  $version,
+  Boolean $use_bridges,
+  Boolean $use_upstream_repository,
+  String  $upstream_release,
 ) {
 
   include ::tor::install

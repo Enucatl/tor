@@ -1,0 +1,16 @@
+---
+tor::arm: false
+tor::arm_version: installed
+tor::automap_hosts_on_resolve: false
+tor::data_dir: /var/lib/tor
+tor::config_file: /etc/tor/torrc
+tor::log_rules:
+  - notice file /var/log/tor/notices.log
+tor::safe_logging: true
+tor::torsocks: false
+tor::torsocks_version: installed
+tor::version: installed
+tor::use_bridges: false
+tor::use_upstream_repository: false
+tor::upstream_release: stable
+...

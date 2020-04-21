@@ -14,34 +14,34 @@
 #   Unix mode for the tor data directory.
 #
 class tor::daemon::base (
-  String $user                    = $tor::daemon::params::user,
-  String $group                   = $tor::daemon::params::group,
-  Boolean $manage_user            = $tor::daemon::params::manage_user,
-  Stdlib::Filemode $data_dir_mode = $tor::daemon::params::data_dir_mode
-) inherits tor::daemon::params {
+  String $user,
+  String $group,
+  Boolean $manage_user,
+  Stdlib::Filemode $data_dir_mode,
+) {
 
-  if $tor::daemon::params::manage_user {
-    group { $tor::daemon::params::group:
+  if $manage_user {
+    group { $group:
       ensure    => present,
       allowdupe => false,
     }
 
-    user { $tor::daemon::params::user:
+    user { $user:
       ensure    => present,
       allowdupe => false,
       comment   => 'tor user,,,',
       home      => $tor::data_dir,
       shell     => '/bin/false',
-      gid       => $tor::daemon::params::group,
-      require   => Group[$tor::daemon::params::group],
+      gid       => $group,
+      require   => Group[$group],
     }
   }
 
   # directories
   file { $tor::data_dir:
     ensure  => directory,
-    mode    => $tor::daemon::params::data_dir_mode,
-    owner   => $tor::daemon::params::user,
+    mode    => $data_dir_mode,
+    owner   => $user,
     group   => 'root',
     require => Package['tor'],
   }
@@ -58,7 +58,7 @@ class tor::daemon::base (
   concat { $tor::config_file:
     mode    => '0640',
     owner   => 'root',
-    group   => $tor::daemon::params::group,
+    group   => $group,
     require => Package['tor'],
     notify  => Service['tor'],
   }

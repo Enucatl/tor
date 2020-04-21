@@ -32,13 +32,12 @@ define tor::daemon::directory (
     }
   }
 
-  include ::tor::daemon::params
   file { '/etc/tor/tor-exit-notice.html':
     ensure  => $ensure,
     source  => 'puppet:///modules/tor/tor-exit-notice.html',
     require => File['/etc/tor'],
-    owner   => $tor::daemon::params::user,
-    group   => $tor::daemon::params::group,
+    owner   => $tor::daemon::base::user,
+    group   => $tor::daemon::base::group,
     mode    => '0644',
   }
 }
