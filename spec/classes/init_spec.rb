@@ -1,13 +1,14 @@
 require File.expand_path(File.join(File.dirname(__FILE__),'../spec_helper'))
 
 describe 'tor', :type => 'class' do
-  let(:default_facts) {
-    {
-      :osfamily        => 'RedHat',
-      :operatingsystem => 'CentOS',
-    }
+  let(:facts) do
+  {
+    'os' => {
+      'family'  => 'RedHat',
+    },
+    'operatingsystem' => 'CentOS',
   }
-  let(:facts){ default_facts }
+  end
   let(:pre_condition){'Exec{path => "/bin"}' }
   describe 'with standard' do
     it { is_expected.to compile.with_all_deps }
@@ -22,12 +23,14 @@ describe 'tor', :type => 'class' do
       :require    => 'Package[tor]',
     ) }
     context 'on Debian' do
-      let(:facts) {
-        {
-          :osfamily        => 'Debian',
-          :operatingsystem => 'Debian',
-        }
+      let(:facts) do
+      {
+        'os' => {
+          'family'  => 'Debian',
+        },
+        'operatingsystem' => 'Debian',
       }
+      end
       it { is_expected.to compile.with_all_deps }
       it { is_expected.to contain_class('tor::install') }
       it { is_expected.to contain_class('tor::daemon::base') }
