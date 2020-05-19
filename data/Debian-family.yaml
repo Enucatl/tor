@@ -2,5 +2,5 @@
 tor::daemon::base::user: debian-tor
 tor::daemon::base::group: debian-tor
 tor::daemon::base::manage_user: true
-tor::daemon::base::data_dir_mode: 0700
+tor::daemon::base::data_dir_mode: '0700'
 ...
