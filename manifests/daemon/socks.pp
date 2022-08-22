@@ -26,7 +26,7 @@ define tor::daemon::socks(
 ) {
   if $ensure == 'present' {
     concat::fragment { "02.socks.${name}":
-      content => deferred_epp('tor/torrc/02_socks.epp', {
+      content => deferrable_epp('tor/torrc/02_socks.epp', {
         'port'     => $port,
         'policies' => $policies,
         'flags'    => $flags,

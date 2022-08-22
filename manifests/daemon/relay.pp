@@ -74,7 +74,7 @@ define tor::daemon::relay(
   if $ensure == 'present' {
 
     concat::fragment { '03.relay':
-      content => deferred_epp('tor/torrc/03_relay.epp', {
+      content => deferrable_epp('tor/torrc/03_relay.epp', {
         'port'                   => $port,
         'outbound_bindaddresses' => $outbound_bindaddresses,
         'nickname'               => $nickname,

@@ -67,7 +67,7 @@ define tor::daemon::onion_service(
   $data_dir_path = "${data_dir}/${name}"
   if $ensure == 'present' {
     concat::fragment { "05.onion_service.${name}":
-      content => deferred_epp('tor/torrc/05_onion_service.epp', {
+      content => deferrable_epp('tor/torrc/05_onion_service.epp', {
         'single_hop'    => $single_hop,
         'name'          => $name,
         'data_dir_path' => $data_dir_path,

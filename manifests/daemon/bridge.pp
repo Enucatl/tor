@@ -29,7 +29,7 @@ define tor::daemon::bridge(
   }
   if $ensure == 'present' {
     concat::fragment { "11.bridge.${name}":
-      content => deferred_epp('tor/torrc/11_bridge.epp', {
+      content => deferrable_epp('tor/torrc/11_bridge.epp', {
         'name'        => $name,
         'ip'          => $ip,
         'port'        => $port,

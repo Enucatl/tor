@@ -14,7 +14,7 @@ define tor::daemon::httptunnel(
 ){
   if $ensure == 'present' {
     concat::fragment { "13.httptunnel.${name}":
-      content => deferred_epp('tor/torrc/13_httptunnel.epp', {
+      content => deferrable_epp('tor/torrc/13_httptunnel.epp', {
         'port' => $port,
       }),
       order   => '13',
