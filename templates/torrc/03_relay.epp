@@ -9,7 +9,7 @@ OutboundBindAddress <%= $item %>
 <% if $nickname { -%>
 Nickname <%= $nickname %>
 <% } -%>
-<% unless $address =~ Undef { -%>
+<% if $address { -%>
 Address <%= $address %>
 <% } -%>
 <% unless $bandwidth_rate =~ Undef { -%>
