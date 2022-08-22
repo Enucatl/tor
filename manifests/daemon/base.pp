@@ -65,7 +65,7 @@ class tor::daemon::base (
 
   # config file headers
   concat::fragment { '00.header':
-    content => stdlib::deferrable_epp('tor/torrc/00_header.epp'),
+    content => stdlib::deferrable_epp('tor/torrc/00_header.epp', {}),
     order   => '00',
     target  => $tor::config_file,
   }
