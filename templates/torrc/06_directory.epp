@@ -2,7 +2,7 @@
 <% if $port { -%>
 DirPort <%= $port %>
 <% } -%>
-<% if $port_front_page { -%>
+<% unless $port_front_page =~ Undef { -%>
 DirPortFrontPage <%= $port_front_page %>
 <%- } -%>
 

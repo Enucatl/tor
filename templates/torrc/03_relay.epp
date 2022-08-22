@@ -9,13 +9,13 @@ OutboundBindAddress <%= $item %>
 <% if $nickname { -%>
 Nickname <%= $nickname %>
 <% } -%>
-<% if $address { -%>
+<% unless $address =~ Undef { -%>
 Address <%= $address %>
 <% } -%>
-<% if $bandwidth_rate { -%>
+<% unless $bandwidth_rate =~ Undef { -%>
 BandwidthRate <%= $bandwidth_rate %> KB
 <% } -%>
-<% if $bandwidth_burst { -%>
+<% unless $bandwidth_burst =~ Undef { -%>
 BandwidthBurst <%= $bandwidth_burst %> KB
 <% } -%>
 <% unless $relay_bandwidth_rate == 0 { -%>
