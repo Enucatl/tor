@@ -12,10 +12,10 @@ Nickname <%= $nickname %>
 <% if $address { -%>
 Address <%= $address %>
 <% } -%>
-<% unless $bandwidth_rate =~ Undef { -%>
+<% if $bandwidth_rate { -%>
 BandwidthRate <%= $bandwidth_rate %> KB
 <% } -%>
-<% unless $bandwidth_burst =~ Undef { -%>
+<% if $bandwidth_burst { -%>
 BandwidthBurst <%= $bandwidth_burst %> KB
 <% } -%>
 <% unless $relay_bandwidth_rate == 0 { -%>

@@ -19,7 +19,7 @@
 define tor::daemon::directory (
   Enum['present', 'absent'] $ensure = 'present',
   Optional[Tor::Port] $port         = undef,
-  String $port_front_page           = '/etc/tor/tor-exit-notice.html',
+  Optional[String] $port_front_page = '/etc/tor/tor-exit-notice.html',
 ) {
   if $ensure == 'present' {
     concat::fragment { '06.directory':
