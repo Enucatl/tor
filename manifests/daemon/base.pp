@@ -65,14 +65,14 @@ class tor::daemon::base (
 
   # config file headers
   concat::fragment { '00.header':
-    content => deferrable_epp('tor/torrc/00_header.epp'),
+    content => stdlib::deferrable_epp('tor/torrc/00_header.epp'),
     order   => '00',
     target  => $tor::config_file,
   }
 
   # global configurations
   concat::fragment { '01.global':
-    content => deferrable_epp('tor/torrc/01_global.epp', {
+    content => stdlib::deferrable_epp('tor/torrc/01_global.epp', {
       'automap_hosts_on_resolve' => $tor::automap_hosts_on_resolve,
       'data_dir'                 => $tor::data_dir,
       'log_rules'                => $tor::log_rules,

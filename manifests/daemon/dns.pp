@@ -14,7 +14,7 @@ define tor::daemon::dns(
 ){
   if $ensure == 'present' {
     concat::fragment { "08.dns.${name}":
-      content => deferrable_epp('tor/torrc/08_dns.epp', {
+      content => stdlib::deferrable_epp('tor/torrc/08_dns.epp', {
         'port' => $port,
       }),
       order   => '08',

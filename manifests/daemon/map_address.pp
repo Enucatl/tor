@@ -17,7 +17,7 @@ define tor::daemon::map_address(
 ) {
   if $ensure == 'present' {
     concat::fragment { "09.map_address.${name}":
-      content => deferrable_epp('tor/torrc/09_map_address.epp', {
+      content => stdlib::deferrable_epp('tor/torrc/09_map_address.epp', {
         'name'       => $name,
         'address'    => $address,
         'newaddress' => $newaddress,

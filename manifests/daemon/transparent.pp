@@ -16,7 +16,7 @@ define tor::daemon::transparent(
 ){
   if $ensure == 'present' {
     concat::fragment { "10.transparent.${name}":
-      content => deferrable_epp('tor/torrc/10_transparent.epp', {
+      content => stdlib::deferrable_epp('tor/torrc/10_transparent.epp', {
         'port'  => $port,
         'flags' => $flags,
       }),

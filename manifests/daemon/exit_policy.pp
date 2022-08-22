@@ -27,7 +27,7 @@ define tor::daemon::exit_policy(
 ) {
   if $ensure == 'present' {
     concat::fragment { "07.exit_policy.${name}":
-      content => deferrable_epp('tor/torrc/07_exit_policy.epp', {
+      content => stdlib::deferrable_epp('tor/torrc/07_exit_policy.epp', {
         'name'           => $name,
         'accept'         => $accept,
         'reject'         => $reject,

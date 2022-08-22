@@ -47,7 +47,7 @@ define tor::daemon::control(
     }
 
     concat::fragment { '04.control':
-      content => deferrable_epp('tor/torrc/04_control.epp', {
+      content => stdlib::deferrable_epp('tor/torrc/04_control.epp', {
         'port'                            => $port,
         'cookie_authentication'           => $cookie_authentication,
         'cookie_auth_file'                => $cookie_auth_file,
