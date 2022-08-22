@@ -14,7 +14,7 @@ define tor::daemon::automap_hosts_on_resolve(
 ){
   if $ensure == 'present' {
     concat::fragment { "13.automaphostsonresolve.${name}":
-      content => epp('tor/torrc/13_automaphostsonresolve.epp', {
+      content => deferred_epp('tor/torrc/13_automaphostsonresolve.epp', {
         'automap_hosts_on_resolve' => $automap_hosts_on_resolve,
       }),
       order   => '13',

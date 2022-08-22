@@ -40,7 +40,7 @@
     },
     {
       "name": "puppetlabs/stdlib",
-      "version_requirement": ">= 4.24.0"
+      "version_requirement": ">= 8.4.0"
     }
   ],
   "description": "This module manages Tor, making sure it is installed, running, allows for configuration of relays, hidden services, exit policies, etc. With it, you should be able to manage any type of Tor deployment."

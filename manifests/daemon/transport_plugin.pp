@@ -32,7 +32,7 @@ define tor::daemon::transport_plugin(
 ) {
   if $ensure == 'present' {
     concat::fragment { '12.transport_plugin':
-      content => epp('tor/torrc/12_transport_plugin.epp', {
+      content => deferred_epp('tor/torrc/12_transport_plugin.epp', {
         'servertransport_plugin'     => $servertransport_plugin,
         'servertransport_listenaddr' => $servertransport_listenaddr,
         'servertransport_options'    => $servertransport_options,
