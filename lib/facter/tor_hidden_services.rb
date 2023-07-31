@@ -7,7 +7,7 @@ Facter.add(:tor_hidden_services) do
         l =~ /^HiddenServiceDir/
       }.collect{|l| l.sub(/^HiddenServiceDir /,'') }
       dirs.inject({}) { |res,d|
-        if File.exists?(h=File.join(d,'hostname'))
+        if File.exist?(h=File.join(d,'hostname'))
           res[File.basename(d)] = File.read(h).chomp
         end
         res
