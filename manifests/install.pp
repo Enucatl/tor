@@ -2,7 +2,7 @@
 #
 class tor::install {
 
-  if $tor::use_upstream_repository and $::osfamily == 'Debian' {
+  if $tor::use_upstream_repository and $facts['os']['family'] == 'Debian' {
     ensure_packages('apt-transport-https')
 
     apt::source {
@@ -30,7 +30,7 @@ class tor::install {
 
     file {
       '/usr/share/keyrings/torproject.gpg':
-        ensure => present,
+        ensure => file,
         source => 'puppet:///modules/tor/torproject.gpg',
         owner  => 'root',
         group  => 0,
@@ -43,8 +43,8 @@ class tor::install {
     }
   }
 
-  elsif $tor::use_upstream_repository and $::osfamily != 'Debian' {
-    fail("Unsupported managed repository for osfamily: ${::osfamily}, operatingsystem: ${::operatingsystem}, module ${module_name} currently only supports upstream repository for osfamily Debian") # lint:ignore:80chars
+  elsif $tor::use_upstream_repository and $facts['os']['family'] != 'Debian' {
+    fail("Unsupported managed repository for osfamily: ${facts['os']['family']}, operatingsystem: ${facts['os']['name']}, module ${module_name} currently only supports upstream repository for osfamily Debian") # lint:ignore:80chars
   }
 
   else {
@@ -54,8 +54,27 @@ class tor::install {
   }
 
   if $tor::arm {
-    package { 'tor-arm':
-      ensure => $tor::arm_version,
+    package {
+      'nyx':
+        ensure => $tor::arm_version;
+
+      'tor-arm':
+        ensure => purged;
+    }
+    notify {
+      '[tor] *** DEPRECATION WARNING***: the "tor::arm" variable has been renamed "tor::nyx". The old variable will eventually be removed.':
+    }
+    notify {
+      '[tor] *** DEPRECATION WARNING***: the "tor::arm_version" variable has been renamed "tor::nyx_version". The old variable will eventually be removed.':
+    }
+  }
+  elsif $tor::nyx {
+    package {
+      'nyx':
+        ensure => $tor::nyx_version;
+
+      'tor-arm':
+        ensure => purged;
     }
   }
 
