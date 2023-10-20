@@ -6,12 +6,12 @@
     - bundle exec rake tests
     - bundle exec rake spec
 
-# Test with version present on Debian Buster
-test:puppet5.5:
-  image: ruby:2.5
+# Test with version present on Debian Bookworm
+test:puppet7.23:
+  image: ruby:3.1
   variables:
-    PUPPET_VERSION: "~> 5.5.10"
-    FACTER_VERSION: '~> 3.11.0'
+    PUPPET_VERSION: "~> 7.23.0"
+    FACTER_VERSION: '~> 4.3.0'
   <<: *test_definition
 
 # Test with the latest Puppet release
