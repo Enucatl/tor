@@ -13,11 +13,11 @@ describe 'tor::onionv3_key' do
 
   describe 'normal operation' do
     before(:all) do
-      FileUtils.rm_rf(@tmp_path) if File.exists?(@tmp_path)
+      FileUtils.rm_rf(@tmp_path) if File.exist?(@tmp_path)
       FileUtils.mkdir_p(@tmp_path)
     end
     after(:all) do
-      FileUtils.rm_rf(@tmp_path) if File.exists?(@tmp_path)
+      FileUtils.rm_rf(@tmp_path) if File.exist?(@tmp_path)
     end
     let(:return_value) {
       unwrap_all(call_function('tor::onionv3_key',@tmp_path,'test'))
