@@ -59,7 +59,7 @@ define tor::daemon::relay(
   Optional[Tor::Port] $port                                    = undef,
   Optional[Array[Stdlib::IP::Address]] $outbound_bindaddresses = undef,
   Optional[String] $nickname                                   = $name,
-  Stdlib::Fqdn $address                                        = "tor.${::domain}",
+  Stdlib::Fqdn $address                                        = "tor.${facts['networking']['domain']}",
   Optional[Integer] $bandwidth_rate                            = 0,
   Optional[Integer] $bandwidth_burst                           = 0,
   Optional[Integer] $relay_bandwidth_rate                      = 0,
