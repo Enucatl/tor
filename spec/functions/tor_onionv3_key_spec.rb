@@ -13,11 +13,11 @@ describe 'tor::onionv3_key' do
 
   describe 'normal operation' do
     before(:all) do
-      FileUtils.rm_rf(@tmp_path) if File.exists?(@tmp_path)
+      FileUtils.rm_rf(@tmp_path) if File.exist?(@tmp_path)
       FileUtils.mkdir_p(@tmp_path)
     end
     after(:all) do
-      FileUtils.rm_rf(@tmp_path) if File.exists?(@tmp_path)
+      FileUtils.rm_rf(@tmp_path) if File.exist?(@tmp_path)
     end
     let(:return_value) {
       unwrap_all(call_function('tor::onionv3_key',@tmp_path,'test'))
@@ -26,7 +26,12 @@ describe 'tor::onionv3_key' do
       it 'returns an onion address, public and a secret key' do
         expect(return_value.size).to be(3)
       end
-      ['hs_ed25519_secret_key','hs_ed25519_public_key','hostname'].each do |f|
+      ['hs_ed25519_secret_key','hs_ed25519_public_key'].each do |f|
+        it "creates and stores the #{f}" do
+          expect(return_value[f]).to be_eql(call_function('binary_file',File.join(@tmp_path,'test',f)))
+        end
+      end
+      ['hostname'].each do |f|
         it "creates and stores the #{f}" do
           expect(return_value[f]).to be_eql(File.read(File.join(@tmp_path,'test',f)).chomp)
         end

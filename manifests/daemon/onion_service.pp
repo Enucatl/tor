@@ -56,8 +56,8 @@ define tor::daemon::onion_service(
   Boolean $single_hop                         = false,
   Optional[Sensitive[String[1]]] $private_key = undef,
   Optional[Struct[{
-    'hs_ed25519_secret_key' => Sensitive[String[1]],
-    'hs_ed25519_public_key' => String[1],
+    'hs_ed25519_secret_key' => Sensitive[Binary],
+    'hs_ed25519_public_key' => Sensitive[Binary],
     'hostname' => String[1],
   }]] $v3_data                                = undef,
   String $private_key_name                    = $name,
