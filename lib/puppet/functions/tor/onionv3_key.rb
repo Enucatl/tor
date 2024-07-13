@@ -28,24 +28,34 @@ Puppet::Functions.create_function(:'tor::onionv3_key') do
 
     res = read_data(path)
     res['hs_ed25519_secret_key'] = Puppet::Pops::Types::PSensitiveType::Sensitive.new(res['hs_ed25519_secret_key'])
+    res['hs_ed25519_public_key'] = Puppet::Pops::Types::PSensitiveType::Sensitive.new(res['hs_ed25519_public_key'])
     res
   end
 
   def all_files_exist?(path)
-    onionv3_filenames.all?{|f| File.readable?(File.join(path,f)) }
+    (onionv3_str_filenames|onionv3_bin_filenames).all?{|f| File.readable?(File.join(path,f)) }
   end
 
   def read_data(path)
-    onionv3_filenames.inject({}) do |res,f|
+    data = onionv3_str_filenames.inject({}) do |res,f|
       res[f] = File.read(File.join(path,f)).chomp
+      res
+    end
+    onionv3_bin_filenames.inject(data) do |res,f|
+      res[f] = call_function('binary_file',File.join(path,f))
       res
     end
   end
 
-  def onionv3_filenames
-    @onionv3_filenames ||=[ 'hs_ed25519_secret_key',
+  def onionv3_str_filenames
+    @onionv3_str_filenames ||= [
+      'hostname'
+    ]
+  end
+  def onionv3_bin_filenames
+    @onionv3_bin_filenames ||=[ 'hs_ed25519_secret_key',
       'hs_ed25519_public_key',
-      'hostname']
+    ]
   end
 
   def generate_data(path)

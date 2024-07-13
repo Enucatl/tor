@@ -42,7 +42,7 @@ class tor::daemon::base (
     ensure  => directory,
     mode    => $tor::daemon::params::data_dir_mode,
     owner   => $tor::daemon::params::user,
-    group   => 'root',
+    group   => $tor::daemon::params::group,
     require => Package['tor'],
   }
 
@@ -56,9 +56,9 @@ class tor::daemon::base (
 
   # tor configuration file
   concat { $tor::config_file:
-    mode    => '0640',
+    mode    => '0444',
     owner   => 'root',
-    group   => $tor::daemon::params::group,
+    group   => 'root',
     require => Package['tor'],
     notify  => Service['tor'],
   }

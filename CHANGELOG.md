@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file. The format
 is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this
 project adheres to [Semantic Versioning](http://semver.org).
 
-## [4.1.0](https://gitlab.com/shared-puppet-modules-group/tor/-/tags/4.1.0) (TBA)
+## [4.1.0](https://gitlab.com/shared-puppet-modules-group/tor/-/tags/4.1.0) (2024-02-19)
 
 ### Changed
 
@@ -16,7 +16,13 @@ project adheres to [Semantic Versioning](http://semver.org).
   The old parameters still work for now, but will be deprecated in the next
   release.
 
+### Fixed
+
 - Migrate to structured facts, as it's a requirement for Puppet 8 support.
+
+- Use the same file permissions as the Debian and RHEL packages.
+
+- Push onion service keys using `binary_file` to mitigate catalog issues on Puppet 8.
 
 [Full Changelog](https://gitlab.com/shared-puppet-modules-group/tor/-/compare/4.0.0...4.1.0)
 
