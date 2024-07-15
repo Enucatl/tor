@@ -1,5 +1,10 @@
 # tor
 
+## What is this fork about?
+
+- Use `stdlib::deferrable_epp`, instead of `epp`. That allows the puppet client
+  to user secrets without having them resolved by the puppetserver.
+
 #### Table of Contents
 
 1. [Description](#description)
